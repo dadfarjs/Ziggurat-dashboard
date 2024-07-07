@@ -62,6 +62,10 @@ module.exports = {
         indent: 'off',
         '@typescript-eslint/indent': [0],
         'no-use-before-define': 'off',
+        'no-unused-vars': [
+            'error',
+            { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+        ],
         '@typescript-eslint/no-use-before-define': ['off'],
         '@typescript-eslint/no-unused-vars': ['off'],
         '@typescript-eslint/no-shadow': ['off'],

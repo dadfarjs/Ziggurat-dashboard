@@ -29,7 +29,7 @@ function ManagementUserSettings() {
         { value: 'security', label: 'Passwords/Security' },
     ]
 
-    const handleTabsChange = (event: ChangeEvent<{}>, value: string): void => {
+    const handleTabsChange = (_: ChangeEvent<{}>, value: string): void => {
         setCurrentTab(value)
     }
 

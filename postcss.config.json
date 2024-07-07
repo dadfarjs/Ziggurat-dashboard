@@ -1,0 +1,17 @@
+{
+    "plugins": [
+      {
+        "tailwindcss": {}
+      },
+      {
+        "lightningcss": {
+          "browsers": "defaults",
+          "minify": true,
+          "cssModules": {
+            "pattern": "[hash]_[local]_[hash:base64:5]",
+            "dashedIdents": true
+          }
+        }
+      }
+    ]
+  }

@@ -138,7 +138,7 @@ const RecentOrdersTable: FC<RecentOrdersTableProps> = ({ cryptoOrders }) => {
     }
 
     const handleSelectOneCryptoOrder = (
-        event: ChangeEvent<HTMLInputElement>,
+        _: ChangeEvent<HTMLInputElement>,
         cryptoOrderId: string
     ): void => {
         if (!selectedCryptoOrders.includes(cryptoOrderId)) {
@@ -153,7 +153,7 @@ const RecentOrdersTable: FC<RecentOrdersTableProps> = ({ cryptoOrders }) => {
         }
     }
 
-    const handlePageChange = (event: any, newPage: number): void => {
+    const handlePageChange = (_: any, newPage: number): void => {
         setPage(newPage)
     }
 

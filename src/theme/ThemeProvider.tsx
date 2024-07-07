@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { ThemeProvider } from '@mui/material'
 import { themeCreator } from './base'
 
-export const ThemeContext = React.createContext((themeName: string): void => {})
+export const ThemeContext = React.createContext((_: string): void => {})
 
 const ThemeProviderWrapper: React.FC<any> = (props) => {
     const curThemeName = localStorage.getItem('appTheme') || 'PureLightTheme'

@@ -62,7 +62,7 @@ function Forms() {
 
     const [value, setValue] = useState(30)
 
-    const handleChange2 = (event, newValue) => {
+    const handleChange2 = (_, newValue) => {
         setValue(newValue)
     }
 

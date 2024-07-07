@@ -11,4 +11,7 @@ export default defineConfig({
             src: path.resolve('src/'),
         },
     },
+    css: {
+        postcss: 'postcss.config.json',
+    },
 })
