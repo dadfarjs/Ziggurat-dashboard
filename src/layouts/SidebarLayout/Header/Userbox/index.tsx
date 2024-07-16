@@ -2,26 +2,37 @@ import { useRef, useState } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
+import { useTranslation } from 'react-i18next'
+
 import {
     Avatar,
     Box,
     Button,
+    Collapse,
     Divider,
     Hidden,
     lighten,
     List,
     ListItem,
+    ListItemButton,
+    ListItemIcon,
     ListItemText,
     Popover,
     Typography,
 } from '@mui/material'
 
-import InboxTwoToneIcon from '@mui/icons-material/InboxTwoTone'
-import { styled } from '@mui/material/styles'
-import ExpandMoreTwoToneIcon from '@mui/icons-material/ExpandMoreTwoTone'
 import AccountBoxTwoToneIcon from '@mui/icons-material/AccountBoxTwoTone'
-import LockOpenTwoToneIcon from '@mui/icons-material/LockOpenTwoTone'
 import AccountTreeTwoToneIcon from '@mui/icons-material/AccountTreeTwoTone'
+import ExpandMoreTwoToneIcon from '@mui/icons-material/ExpandMoreTwoTone'
+import InboxTwoToneIcon from '@mui/icons-material/InboxTwoTone'
+import LockOpenTwoToneIcon from '@mui/icons-material/LockOpenTwoTone'
+import StarBorder from '@mui/icons-material/StarBorder'
+import InboxIcon from '@mui/icons-material/MoveToInbox'
+import ExpandLess from '@mui/icons-material/ExpandLess'
+import ExpandMore from '@mui/icons-material/ExpandMore'
+import { styled } from '@mui/material/styles'
+import useDirectionCheck from 'src/utils/hooks/useDirectionCheck'
+import i18n from 'src/libs/I18n'
 
 const UserBoxButton = styled(Button)(
     ({ theme }) => `
@@ -58,22 +69,34 @@ const UserBoxDescription = styled(Typography)(
 `
 )
 
+const user = {
+    name: 'Catherine Pike',
+    avatar: '/static/images/avatars/1.jpg',
+    jobtitle: 'Project Manager',
+}
+
 function HeaderUserbox() {
-    const user = {
-        name: 'Catherine Pike',
-        avatar: '/static/images/avatars/1.jpg',
-        jobtitle: 'Project Manager',
-    }
+    const { t } = useTranslation()
 
     const ref = useRef<any>(null)
-    const [isOpen, setOpen] = useState<boolean>(false)
+    const refBtnLang = useRef<any>(null)
+    const [isOpen, setIsOpen] = useState<boolean>(false)
+    const [isOpenBtnLang, setIsOpenBtnLang] = useState<boolean>(false)
 
     const handleOpen = (): void => {
-        setOpen(true)
+        setIsOpen(true)
     }
 
     const handleClose = (): void => {
-        setOpen(false)
+        setIsOpen(false)
+    }
+
+    const handleClickListItemButtonLang = () => {
+        setIsOpenBtnLang(!isOpenBtnLang)
+    }
+
+    const handleClickChangeLang = (lang: string) => {
+        i18n.changeLanguage(lang)
     }
 
     return (
@@ -120,6 +143,61 @@ function HeaderUserbox() {
                 </MenuUserBox>
                 <Divider sx={{ mb: 0 }} />
                 <List sx={{ p: 1 }} component="nav">
+                    <ListItemButton
+                        onClick={handleClickListItemButtonLang}
+                        ref={refBtnLang}
+                    >
+                        <ListItemIcon>
+                            <InboxIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Inbox" />
+                        {open ? <ExpandLess /> : <ExpandMore />}
+                    </ListItemButton>
+
+                    <Popover
+                        anchorEl={refBtnLang.current}
+                        onClose={handleClickListItemButtonLang}
+                        open={isOpenBtnLang}
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: useDirectionCheck('rtl')
+                                ? 'right'
+                                : 'left',
+                        }}
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: useDirectionCheck('rtl')
+                                ? 'left'
+                                : 'right',
+                        }}
+                    >
+                        <Collapse
+                            in={isOpenBtnLang}
+                            timeout="auto"
+                            unmountOnExit
+                        >
+                            <List component="div" disablePadding>
+                                <ListItemButton
+                                    sx={{ pl: 4 }}
+                                    onClick={() => handleClickChangeLang('en')}
+                                >
+                                    <ListItemIcon>
+                                        <StarBorder />
+                                    </ListItemIcon>
+                                    <ListItemText primary={t('english')} />
+                                </ListItemButton>
+                                <ListItemButton
+                                    sx={{ pl: 4 }}
+                                    onClick={() => handleClickChangeLang('fa')}
+                                >
+                                    <ListItemIcon>
+                                        <StarBorder />
+                                    </ListItemIcon>
+                                    <ListItemText primary={t('persian')} />
+                                </ListItemButton>
+                            </List>
+                        </Collapse>
+                    </Popover>
                     <ListItem
                         button
                         to="/management/profile/details"
