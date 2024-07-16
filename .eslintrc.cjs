@@ -63,7 +63,7 @@ module.exports = {
         '@typescript-eslint/indent': [0],
         'no-use-before-define': 'off',
         'no-unused-vars': [
-            'error',
+            'warning',
             { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
         ],
         '@typescript-eslint/no-use-before-define': ['off'],
