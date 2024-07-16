@@ -13,7 +13,7 @@ function App() {
     return (
         <ThemeProvider>
             {/* <LocalizationProvider dateAdapter={AdapterDateFns}> */}
-            <CssBaseline />
+            <CssBaseline enableColorScheme />
             {content}
             {/* </LocalizationProvider> */}
         </ThemeProvider>

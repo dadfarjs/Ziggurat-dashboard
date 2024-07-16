@@ -43,7 +43,11 @@ function Sidebar() {
                         lg: 'inline-block',
                     },
                     position: 'fixed',
-                    left: 0,
+                    right:
+                        (theme.direction === 'rtl' ||
+                            theme.direction !== 'ltr') &&
+                        0,
+                    left: theme.direction === 'ltr' && 0,
                     top: 0,
                     background:
                         theme.palette.mode === 'dark'

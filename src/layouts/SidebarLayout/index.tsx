@@ -22,7 +22,7 @@ const SidebarLayout: FC<SidebarLayoutProps> = () => {
                     background:
                         theme.palette.mode === 'dark'
                             ? theme.colors.alpha.trueWhite[5]
-                            : theme.colors.alpha.white[50],
+                            : theme.colors.alpha.trueWhite[50],
                     marginBottom: `${theme.spacing(4)}`,
                     boxShadow:
                         theme.palette.mode === 'dark'
@@ -50,7 +50,13 @@ const SidebarLayout: FC<SidebarLayoutProps> = () => {
                     flex: 1,
                     pt: `${theme.header.height}`,
                     [theme.breakpoints.up('lg')]: {
-                        ml: `${theme.sidebar.width}`,
+                        ml:
+                            theme.direction === 'ltr' &&
+                            `${theme.sidebar.width}`,
+                        mr:
+                            (theme.direction === 'rtl' ||
+                                theme.direction !== 'ltr') &&
+                            `${theme.sidebar.width}`,
                     },
                 }}
             >
