@@ -4,6 +4,7 @@ import { Outlet } from 'react-router-dom'
 
 import Sidebar from './Sidebar'
 import Header from './Header'
+import useDirectionCheck from 'src/utils/hooks/useDirectionCheck'
 
 interface SidebarLayoutProps {
     children?: ReactNode
@@ -51,11 +52,10 @@ const SidebarLayout: FC<SidebarLayoutProps> = () => {
                     pt: `${theme.header.height}`,
                     [theme.breakpoints.up('lg')]: {
                         ml:
-                            theme.direction === 'ltr' &&
+                            useDirectionCheck('ltr') &&
                             `${theme.sidebar.width}`,
                         mr:
-                            (theme.direction === 'rtl' ||
-                                theme.direction !== 'ltr') &&
+                            useDirectionCheck('rtl') &&
                             `${theme.sidebar.width}`,
                     },
                 }}

@@ -18,6 +18,7 @@ import CloseTwoToneIcon from '@mui/icons-material/CloseTwoTone'
 import HeaderButtons from './Buttons'
 import HeaderUserbox from './Userbox'
 import HeaderMenu from './Menu'
+import useDirectionCheck from 'src/utils/hooks/useDirectionCheck'
 
 const HeaderWrapper = styled(Box)(
     ({ theme }) => `
@@ -32,8 +33,8 @@ const HeaderWrapper = styled(Box)(
         justify-content: space-between;
         width: 100%;
         @media (min-width: ${theme.breakpoints.values.lg}px) {
-            left: ${theme.direction === 'ltr' ? theme.sidebar.width : 0};
-            right: ${theme.direction === 'rtl' || theme.direction !== 'ltr' ? theme.sidebar.width : 0};
+            left: ${useDirectionCheck('ltr') ? theme.sidebar.width : 0};
+            right: ${useDirectionCheck('rtl') ? theme.sidebar.width : 0};
             width: auto;
         }
 `

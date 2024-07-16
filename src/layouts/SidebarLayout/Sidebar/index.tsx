@@ -16,6 +16,7 @@ import {
 
 import SidebarMenu from './SidebarMenu'
 import Logo from 'src/components/LogoSign'
+import useDirectionCheck from 'src/utils/hooks/useDirectionCheck'
 
 const SidebarWrapper = styled(Box)(
     ({ theme }) => `
@@ -43,11 +44,8 @@ function Sidebar() {
                         lg: 'inline-block',
                     },
                     position: 'fixed',
-                    right:
-                        (theme.direction === 'rtl' ||
-                            theme.direction !== 'ltr') &&
-                        0,
-                    left: theme.direction === 'ltr' && 0,
+                    right: useDirectionCheck('rtl') && 0,
+                    left: useDirectionCheck('ltr') && 0,
                     top: 0,
                     background:
                         theme.palette.mode === 'dark'
