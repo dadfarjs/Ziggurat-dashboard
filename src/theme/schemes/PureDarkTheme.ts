@@ -1,6 +1,6 @@
 import { alpha, createTheme, lighten, darken } from '@mui/material'
 import '@mui/lab/themeAugmentation'
-import i18n from 'src/libs/I18n'
+import i18n from 'lib/I18n'
 
 const themeColors = {
     primary: '#5569ff',
@@ -130,7 +130,6 @@ const colors = {
 
 export const PureDarkTheme = createTheme({
     direction: i18n.dir(),
-    // direction: 'rtl',
     colors: {
         gradients: {
             blue1: colors.gradients.blue1,

@@ -24,7 +24,15 @@
         "allowJs": true,
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
-        "forceConsistentCasingInFileNames": true
+        "forceConsistentCasingInFileNames": true,
+        "paths": {
+            "content/*": ["./src/content/*"],
+            "assets/*": ["./src/assets/*"],
+            "lib/*": ["./src/lib/*"],
+            "models/*": ["./src/models/*"],
+            "utils/*": ["./src/utils/*"],
+            "theme/*": ["./src/theme/*"]
+        },
     },
     "include": ["src"],
     "references": [{ "path": "./tsconfig.node.json" }]

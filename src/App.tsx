@@ -5,13 +5,15 @@ import router from 'src/router'
 // import LocalizationProvider from '@mui/lab/LocalizationProvider'
 
 import { I18nextProvider } from 'react-i18next'
-import i18n from './libs/I18n'
+import i18n from 'lib/I18n'
 
 import { CssBaseline } from '@mui/material'
 import ThemeProvider from 'src/theme/ThemeProvider'
+import useDirection from './utils/hooks/useDirection'
 
 function App() {
     const content = useRoutes(router)
+    useDirection()
 
     return (
         <ThemeProvider>

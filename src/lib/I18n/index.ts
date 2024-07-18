@@ -12,15 +12,17 @@ const options = {
         'path',
         'subdomain',
     ],
+    lookupCookie: 'lng',
     lookupLocalStorage: 'lng',
+    lookupSessionStorage: 'lng',
+    lookupFromPathIndex: 0,
+    lookupFromSubdomainIndex: 0,
+    caches: ['localStorage', 'cookie'],
 }
 
 i18n.use(LanguageDetector)
-    .use(initReactI18next) // passes i18n down to react-i18next
+    .use(initReactI18next)
     .init({
-        // the translations
-        // (tip move them in a JSON file and import them,
-        // or even better, manage them via a UI: https://react.i18next.com/guides/multiple-translation-files#manage-your-translations-with-a-management-gui)
         resources: {
             en: {
                 translation: {
@@ -35,14 +37,20 @@ i18n.use(LanguageDetector)
                 },
             },
         },
-        lng: 'fa', // if you're using a language detector, do not define the lng option
+        // lng: 'fa', // اگر از شناسایی زبان استفاده می‌کنید، این گزینه را حذف کنید
         fallbackLng: 'en',
         supportedLngs: ['fa', 'en'],
         detection: options,
 
         interpolation: {
-            escapeValue: false, // react already safes from xss => https://www.i18next.com/translation-function/interpolation#unescape
+            escapeValue: false, // react already safes from xss
         },
     })
+
+export const direction = (lng) => (lng === 'fa' || lng === 'ar' ? 'rtl' : 'ltr')
+
+i18n.on('languageChanged', (lng) => {
+    document.documentElement.dir = direction(lng)
+})
 
 export default i18n

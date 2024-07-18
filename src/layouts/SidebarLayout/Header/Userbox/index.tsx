@@ -32,7 +32,7 @@ import ExpandLess from '@mui/icons-material/ExpandLess'
 import ExpandMore from '@mui/icons-material/ExpandMore'
 import { styled } from '@mui/material/styles'
 import useDirectionCheck from 'src/utils/hooks/useDirectionCheck'
-import i18n from 'src/libs/I18n'
+import i18n from 'lib/I18n'
 
 const UserBoxButton = styled(Button)(
     ({ theme }) => `
@@ -96,7 +96,8 @@ function HeaderUserbox() {
     }
 
     const handleClickChangeLang = (lang: string) => {
-        i18n.changeLanguage(lang)
+        console.log('teste:', lang)
+        lang && i18n.changeLanguage(lang)
     }
 
     return (

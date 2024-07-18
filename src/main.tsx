@@ -8,7 +8,7 @@ import App from 'src/App'
 import { SidebarProvider } from 'src/contexts/SidebarContext'
 import * as serviceWorker from 'src/serviceWorker'
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById('main')!).render(
     <React.StrictMode>
         <HelmetProvider>
             <SidebarProvider>
