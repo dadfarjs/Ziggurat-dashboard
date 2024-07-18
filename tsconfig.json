@@ -31,7 +31,8 @@
             "lib/*": ["./src/lib/*"],
             "models/*": ["./src/models/*"],
             "utils/*": ["./src/utils/*"],
-            "theme/*": ["./src/theme/*"]
+            "theme/*": ["./src/theme/*"],
+            "contexts/*": ["./src/contexts/*"]
         },
     },
     "include": ["src"],

@@ -98,6 +98,8 @@ function HeaderUserbox() {
     const handleClickChangeLang = (lang: string) => {
         console.log('teste:', lang)
         lang && i18n.changeLanguage(lang)
+        setIsOpen(false)
+        setIsOpenBtnLang(false)
     }
 
     return (
@@ -200,23 +202,17 @@ function HeaderUserbox() {
                         </Collapse>
                     </Popover>
                     <ListItem
-                        button
                         to="/management/profile/details"
                         component={NavLink}
                     >
                         <AccountBoxTwoToneIcon fontSize="small" />
                         <ListItemText primary="My Profile" />
                     </ListItem>
-                    <ListItem
-                        button
-                        to="/dashboards/messenger"
-                        component={NavLink}
-                    >
+                    <ListItem to="/dashboards/messenger" component={NavLink}>
                         <InboxTwoToneIcon fontSize="small" />
                         <ListItemText primary="Messenger" />
                     </ListItem>
                     <ListItem
-                        button
                         to="/management/profile/settings"
                         component={NavLink}
                     >

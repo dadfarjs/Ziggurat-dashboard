@@ -127,7 +127,7 @@ const colors = {
     },
 }
 
-export const PureLightTheme = createTheme({
+export const LightTheme = createTheme({
     direction: i18n.dir(),
     colors: {
         gradients: {

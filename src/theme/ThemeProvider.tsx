@@ -1,22 +1,33 @@
 import React, { useState } from 'react'
 import { ThemeProvider } from '@mui/material'
+import {
+    ThemeContextInterface,
+    ThemeContextProvider,
+} from 'contexts/ThemeContext'
+import { ThemeNameType } from 'models/theme'
 import { themeCreator } from './base'
 
-export const ThemeContext = React.createContext((_: string): void => {})
-
 const ThemeProviderWrapper: React.FC<any> = (props) => {
-    const curThemeName = localStorage.getItem('appTheme') || 'PureLightTheme'
-    const [themeName, _setThemeName] = useState(curThemeName)
+    const [themeName, setThemeName] = useState<ThemeNameType>(
+        (localStorage.getItem('appTheme') as ThemeNameType) ?? 'LightTheme'
+    )
     const theme = themeCreator(themeName)
-    const setThemeName = (themeName: string): void => {
-        localStorage.setItem('appTheme', themeName)
-        _setThemeName(themeName)
+    const ThemeUIEvents: ThemeContextInterface = {
+        toggleThemeName: () => {
+            const currentThemeName: ThemeNameType =
+                (localStorage.getItem('appTheme') as ThemeNameType) ||
+                'LightTheme'
+            const newThemeName: ThemeNameType =
+                currentThemeName === 'LightTheme' ? 'DarkTheme' : 'LightTheme'
+            setThemeName(newThemeName)
+            localStorage.setItem('appTheme', newThemeName)
+        },
     }
 
     return (
-        <ThemeContext.Provider value={setThemeName}>
+        <ThemeContextProvider themeUIEvents={ThemeUIEvents}>
             <ThemeProvider theme={theme}>{props.children}</ThemeProvider>
-        </ThemeContext.Provider>
+        </ThemeContextProvider>
     )
 }
 
